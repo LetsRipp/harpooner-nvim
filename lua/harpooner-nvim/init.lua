@@ -130,7 +130,7 @@ function M.setup(config_override)
     -- Use tbl_get to safely access potentially nil keys from user config
     -- STOP: this may be breaking the keybindings
 
-    -- local keymaps = user_config.keymaps or {}
+    local keymaps = user_config.keymaps or {}
 
     -- keymaps
     map(keymaps.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
