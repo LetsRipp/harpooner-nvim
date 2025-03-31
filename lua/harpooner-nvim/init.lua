@@ -30,6 +30,7 @@ local default_config = {
     keymaps = {
         add_file = "<leader>a",
         toggle_ui = "<C-e>",
+        save_list = "<leader>hs",
         nav_file_1 = "<leader>1",
         nav_file_2 = "<leader>2",
         nav_file_3 = "<leader>3",
@@ -39,6 +40,20 @@ local default_config = {
 }
 
 local user_config = {} -- To be populated by setup
+
+-- function to use keybinding to save list of bookmarks
+local function prompt_and_save_list()
+    vim.ui.input({ prompt = "Save Harpooner list as: " }, function(list_name)
+        if list_name and list_name ~= "" then
+            -- Escape the name just in case, although less critical than file paths
+            local escaped_name = vim.fn.fnameescape(list_name)
+            -- Construct and execute the command
+            vim.cmd("HarpoonerSaveList " .. escaped_name)
+        else
+            vim.notify("Harpooner: List save cancelled.", vim.log.levels.INFO)
+        end
+    end)
+end
 
 --[[ ======================================================================
     Plugin Setup Function
@@ -111,8 +126,13 @@ function M.setup(config_override)
         end
     end
 
-    map(user_config.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
-    map(user_config.keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
+    -- Use tbl_get to safely access potentially nil keys from user config
+    local keymaps = user_config.keymaps or {}
+
+    -- keymaps
+    map(keymaps.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
+    map(keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
+    map(keymaps.keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
 
     -- Keybound File Recall (Example for 1-4)
     local function create_nav_map(index)
