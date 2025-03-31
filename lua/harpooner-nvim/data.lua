@@ -88,7 +88,6 @@ function M.initialize()
         if data and type(data) == 'table' then
             state.current_list = data
             -- Maybe store/load the name too if current_list_file contains {name=..., list=...}
-            print("Harpooner: Loaded last list.")
         else
             vim.notify("Harpooner: Error loading last list: " .. (decode_err or "Invalid data"), vim.log.levels.WARN)
             state.current_list = {} -- Start fresh on error
@@ -96,7 +95,7 @@ function M.initialize()
     else
         -- No previous list found, start empty
         state.current_list = {}
-        print("Harpooner: Initialized empty list.")
+        print ("Harpooner: I've loaded nothing. Nothing.")
     end
     state.is_dirty = false
 end

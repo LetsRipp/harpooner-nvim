@@ -171,8 +171,7 @@ function M.setup(config_override)
             desc = "Harpooner: Save current list state before exiting"
         })
     end
-
-    print("Harpooner setup complete.")
+    print("Harpooner: Send it bud")
 end
 
 -- Optional: Allow getting the UI instance if needed elsewhere (e.g., for refresh after load)
