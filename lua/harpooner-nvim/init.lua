@@ -31,6 +31,7 @@ local default_config = {
         add_file = "<leader>a",
         toggle_ui = "<C-e>",
         save_list = "<leader>hs",
+        load_list = "<leader>hl",
         nav_file_1 = "<leader>1",
         nav_file_2 = "<leader>2",
         nav_file_3 = "<leader>3",
@@ -131,7 +132,8 @@ function M.setup(config_override)
 
     -- keymaps
     map(keymaps.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
-    map(keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
+    map(keymaps.keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
+    map(keymaps.keymaps.load_list, '<Cmd>HarpoonerLoadList<CR>', "Open List UI")
     map(keymaps.keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
 
     -- Keybound File Recall (Example for 1-4)
