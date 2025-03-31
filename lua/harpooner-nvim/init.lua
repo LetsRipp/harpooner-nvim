@@ -132,9 +132,11 @@ function M.setup(config_override)
 
     -- keymaps
     map(keymaps.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
-    map(keymaps.keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
-    map(keymaps.keymaps.load_list, '<Cmd>HarpoonerLoadList<CR>', "Open List UI")
     map(keymaps.keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
+
+    -- TODO: fix this keybinding and add keybinding for load list
+    map(keymaps.keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
+
 
     -- Keybound File Recall (Example for 1-4)
     local function create_nav_map(index)
