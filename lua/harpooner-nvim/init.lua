@@ -73,19 +73,40 @@ function M.setup(config_override)
     ui_instance = UI.new(user_config.ui, Data)
 
     -- Define User Commands
+    -- add file to current list
     vim.api.nvim_create_user_command('HarpoonerAdd', function()
         local current_file = vim.api.nvim_buf_get_name(0)
         Data.add_current_file_path(current_file)
     end, { desc = "Harpooner: Add current file to the list" })
 
+    -- toggle UI
     vim.api.nvim_create_user_command('HarpoonerList', function()
         ui_instance:toggle_quick_menu()
     end, { desc = "Harpooner: Toggle bookmark list UI" })
 
+    -- edit list
     vim.api.nvim_create_user_command('HarpoonerEdit', function()
          ui_instance:toggle_quick_menu()
     end, { desc = "Harpooner: Edit bookmark list (same as List)" })
 
+    -- delete_list
+    vim.api.nvim_create_user_command('HarpoonerDeleteList', function(opts)
+        if not opts.args or opts.args == '' then
+            vim.notify("Harpooner: Usage: HarpoonerDeleteList <list_name>", vim.log.levels.ERROR)
+            return
+        end
+        -- Confirmation is handled inside Data.delete_list
+        Data.delete_list(opts.args)
+    end, {
+        desc = "Harpooner: Delete a saved list",
+        nargs = 1,
+        -- Use the same completion function as HarpoonerLoadList
+        complete = function(arglead, cmdline, cursorpos)
+            return Data.get_saved_list_names()
+        end
+    })
+
+    -- save list
     vim.api.nvim_create_user_command('HarpoonerSaveList', function(opts)
         if not opts.args or opts.args == '' then
             vim.notify("Harpooner: Usage: HarpoonerSaveList <list_name>", vim.log.levels.ERROR)
@@ -101,6 +122,7 @@ function M.setup(config_override)
         end
     })
 
+    -- load list
     vim.api.nvim_create_user_command('HarpoonerLoadList', function(opts)
          if opts.fargs and #opts.fargs > 0 then
              -- Load directly if name is provided

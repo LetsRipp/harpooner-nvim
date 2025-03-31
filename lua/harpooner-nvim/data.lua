@@ -223,6 +223,61 @@ function M.load_list(list_name)
     end
 end
 
+--[[ ======================================================================
+   List Deletion Function
+   ====================================================================== ]]
+
+--- Deletes a saved list file after confirmation.
+---@param list_name string The name of the list to delete.
+function M.delete_list(list_name)
+    if not list_name or list_name == '' then
+        vim.notify("Harpooner: No list name provided for deletion.", vim.log.levels.ERROR)
+        return false
+    end
+
+    -- Prevent deleting the internal current list state file directly
+    if list_name == '_current_list' then
+         vim.notify("Harpooner: Cannot delete the internal '_current_list' state file.", vim.log.levels.ERROR)
+         return false
+    end
+
+    local file_path = data_dir .. '/' .. list_name .. '.json'
+
+    -- Check if the file actually exists
+    if vim.fn.filereadable(file_path) == 0 then
+        vim.notify("Harpooner: List '" .. list_name .. "' not found.", vim.log.levels.ERROR)
+        return false
+    end
+
+    -- Ask for confirmation before deleting
+    vim.ui.confirm("Are you sure you want to delete the Harpooner list '" .. list_name .. "'?", function(confirmed)
+        if confirmed then
+            -- Attempt to delete the file
+            local ok, err = pcall(vim.fn.delete, file_path) -- Use pcall for safety
+
+            if ok then
+                vim.notify("Harpooner: Deleted list '" .. list_name .. "'.")
+
+                -- If the deleted list was the currently loaded one, clear its name
+                if state.current_list_name == list_name then
+                    state.current_list_name = nil
+                    -- Keep state.current_list in memory until user loads another or exits
+                    -- state.is_dirty doesn't need changing here conceptually
+                end
+                -- NOTE: Command completion caches might need Neovim restart or
+                -- specific handling if you want immediate update without restart.
+                return true
+            else
+                vim.notify("Harpooner: Error deleting list '" .. list_name .. "': " .. tostring(err), vim.log.levels.ERROR)
+                return false
+            end
+        else
+            vim.notify("Harpooner: List deletion cancelled.", vim.log.levels.INFO)
+            return false
+        end
+    end)
+end
+
 --- Gets the names of all saved lists.
 ---@return table list A list of saved list names (strings).
 function M.get_saved_list_names()
