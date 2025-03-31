@@ -1,6 +1,3 @@
-Okay, here is a draft for a `README.md` file for your Harpooner plugin. It includes explanations based on the code provided and the features we've discussed.
-
-```markdown
 # Harpooner (harpooner-nvim)
 
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE.md) A Neovim plugin for bookmarking files and managing lists of bookmarks, inspired by ThePrimeagen's harpoon but built with Lua and offering distinct features for list management. Quickly jump between frequently used files and organize them into named lists for different projects or contexts.
@@ -151,11 +148,6 @@ These keymaps are active *only* when the Harpooner UI floating window is open an
 
 ## License
 
-This plugin is released under a **Proprietary License**. Please see the header comments in the Lua files or contact the author (`hobo`) for more details. ```
+This plugin is released under a **MIT**. Please see the header comments in the Lua files or contact the author (`hobo`) for more details. ```
 
-**Remember to:**
 
-1.  Save this content as `README.md` in the root of your `harpooner.git` repository.
-2.  Consider adding an actual `LICENSE.md` file if you want to be more explicit about the terms, even if it's proprietary.
-3.  Replace the placeholder comment for the demo GIF/screenshot if you create one.
-4.  Adjust the author handle (`hobo`) and repository URL (`LetsRipp/harpooner.git`) if they are different.
