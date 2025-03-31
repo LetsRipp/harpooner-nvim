@@ -9,7 +9,7 @@
 
 local M = {}
 
-local Data = require('harpooner.data')
+local Data = require('harpooner-nvim.data')
 local UI -- UI instance, created in setup
 
 -- Holds the single UI instance
@@ -53,7 +53,7 @@ function M.setup(config_override)
 
     -- Create the UI instance, passing user UI settings and data module
     -- Ensure UI is required *after* Data is initialized if UI needs data on creation
-    UI = require('harpooner.ui')
+    UI = require('harpooner-nvim.ui')
     ui_instance = UI.new(user_config.ui, Data)
 
     -- Define User Commands
