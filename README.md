@@ -3,8 +3,7 @@
 ![Harpooner](https://img.shields.io/badge/harpooner-v0.0.1-blue.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Author: hobo](https://img.shields.io/badge/Author-hobo-green.svg)<BR>
-A Neovim plugin for bookmarking files and managing lists of bookmarks, inspired by ThePrimeagen's harpoon but built with Lua and offering distinct features for list management.<br>
-Quickly jump between frequently used files and organize them into named lists for different projects or contexts.
+A Neovim plugin for bookmarking files and managing lists of bookmarks, inspired by ThePrimeagen's harpoon but built with Lua and offering distinct features for list management. Quickly jump between frequently used files and organize them into named lists for different projects or contexts.
 
 ## Features
 
