@@ -1,6 +1,6 @@
 -- File: init.lua
 -- Author: hobo
--- License: proprietery
+-- License: proprietary
 -- Description: main entry point for the plugin
 -- Version: 0.0.1
 -- Created: 2025-03-31
@@ -128,17 +128,13 @@ function M.setup(config_override)
     end
 
     -- Use tbl_get to safely access potentially nil keys from user config
-    -- STOP: this may be breaking the keybindings
-
     local keymaps = user_config.keymaps or {}
 
     -- keymaps
-    map(keymaps.keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
-    map(keymaps.keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
-
-    -- TODO: fix this keybinding and add keybinding for load list
-    map(keymaps.keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
-
+    map(keymaps.add_file, '<Cmd>HarpoonerAdd<CR>', "Add current file")
+    map(keymaps.toggle_ui, '<Cmd>HarpoonerList<CR>', "Toggle UI")
+    map(keymaps.save_list, function() prompt_and_save_list() end, "Save current list as...")
+    map(keymaps.load_list, function() UI.select_and_load_list() end, "Load bookmark list")
 
     -- Keybound File Recall (Example for 1-4)
     local function create_nav_map(index)
