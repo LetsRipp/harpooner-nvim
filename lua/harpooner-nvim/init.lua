@@ -38,6 +38,9 @@ local default_config = {
         nav_file_4 = "<leader>4",
         nav_file_5 = "<leader>5",
         nav_file_6 = "<leader>6",
+        nav_file_7 = "<leader>7",
+        nav_file_8 = "<leader>8",
+        nav_file_9 = "<leader>9",
         -- Add more nav file keymaps if needed (maybe generate up to 9?)
     }
 }
