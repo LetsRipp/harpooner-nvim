@@ -28,12 +28,12 @@ local default_config = {
         -- Add other UI options matching ui.lua defaults you want to override
     },
     keymaps = {
-        add_file = "<leader>ha",
-        toggle_ui = "<leader>hh",
-        nav_file_1 = "<leader>h1",
-        nav_file_2 = "<leader>h2",
-        nav_file_3 = "<leader>h3",
-        nav_file_4 = "<leader>h4",
+        add_file = "<leader>a",
+        toggle_ui = "<C-e>",
+        nav_file_1 = "<leader>1",
+        nav_file_2 = "<leader>2",
+        nav_file_3 = "<leader>3",
+        nav_file_4 = "<leader>4",
         -- Add more nav file keymaps if needed (maybe generate up to 9?)
     }
 }
