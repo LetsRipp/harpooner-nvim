@@ -128,6 +128,7 @@ function M.setup(config_override)
     end
 
     -- Use tbl_get to safely access potentially nil keys from user config
+    -- STOP: this may be breaking the keybindings
     local keymaps = user_config.keymaps or {}
 
     -- keymaps
