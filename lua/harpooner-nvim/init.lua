@@ -4,7 +4,7 @@
 -- Description: main entry point for the plugin
 -- Version: 0.0.1
 -- Created: 2025-03-31
--- Last modified: 2025-03-31
+-- Last modified: 2025-04-07
 -- Repo: https://github.com/LetsRipp/harpooner.git
 
 local M = {}
